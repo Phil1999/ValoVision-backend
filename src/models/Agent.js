@@ -1,14 +1,14 @@
-const db = require('../config/db');
+const pool = require('../config/db');
 
 const Agent = {
     findAll: function(callback) {
-        db.query('SELECT * FROM Agents', callback);
+        pool.query('SELECT * FROM Agents', callback);
     },
     findById: function(id, callback) {
-        db.query('SELECT * FROM Agents WHERE agentID = ?', [id], callback);
+        pool.query('SELECT * FROM Agents WHERE agentID = ?', [id], callback);
     },
     create: function(agentData, callback) {
-        db.query(
+        pool.query(
             'INSERT INTO Agents (agentName, agentPortraitLink) VALUES (?, ?)',
             [agentData.agentName, agentData.agentPortraitLink], callback
         );
