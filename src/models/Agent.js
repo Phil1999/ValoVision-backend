@@ -3,7 +3,7 @@ import pool from '../config/db.js';
 const Agent = {
     findAll: async function() {
         try {
-            const result = await pool.query('SELECT * FROM Agents');
+            const [result] = await pool.query('SELECT * FROM Agents');
             return result;
         } catch (error) {
             throw error;
@@ -11,8 +11,8 @@ const Agent = {
     },
     findById: async function(id) {
         try {
-            const result = await pool.query('SELECT * FROM Agents WHERE agentID = ?', [id]);
-            return result;
+            const [result] = await pool.query('SELECT * FROM Agents WHERE agentID = ?', [id]);
+            return result[0];
         } catch (error) {
             throw error;
         }
