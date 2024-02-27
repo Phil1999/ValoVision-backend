@@ -22,7 +22,7 @@ const getAgentById = async (req, res) => {
         if (!agent) {
             res.status(404).send({ message: 'Agent not found' });
         } else {
-            res.status(200).json(agent[0]);
+            res.status(200).json(agent);
         }
     } catch (error) {
         console.error(`Error fetching agent with id ${id}:`, error);
