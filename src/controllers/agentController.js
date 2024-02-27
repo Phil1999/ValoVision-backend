@@ -1,42 +1,44 @@
 import Agent from '../models/Agent.js';
 
-const getAgents = (req, res) => {
-    Agent.findAll((err, agents) => {
-        if (err) {
-            console.error('Error fetching agents:', err);
-            res.status(500).send({ message: 'Error fetching agents' });
-            return;
+const getAgents = async (req, res) => {
+    try {
+        const agents = await Agent.findAll();
+        if (!agents) {
+            res.status(404).send({ message: 'No agents added.' });
+        } else {
+            res.status(200).json(agents);
         }
-        res.json(agents);
-    });
+        
+    } catch (error) {
+        console.error('Error fetching agents:', error);
+        res.status(500).send({ message: 'Error fetching agents' });
+    }
 };
 
-const getAgentById = (req, res) => {
+const getAgentById = async (req, res) => {
     const { id } = req.params;
-    Agent.findById(id, (err, agents) => {
-        if (err) {
-            console.error(`Error fetching agent with id ${id}:`, err);
-            res.status(500).send({ message: `Error fetching agent with id ${id}` });
-            return;
-        }
-        if (agents.length === 0) {
+    try {
+        const agents = await Agent.findById(id);
+        if (!agents) {
             res.status(404).send({ message: 'Agent not found' });
-            return;
+        } else {
+            res.status(200).json(agents[0]);
         }
-        res.json(agents[0]);
-    });
+    } catch (error) {
+        console.error(`Error fetching agent with id ${id}:`, error);
+        res.status(500).send({ message: `Error fetching agent with id ${id}` });
+    }
 };
 
-const createAgent = (req, res) => {
+const createAgent = async (req, res) => {
     const agentData = req.body;
-    Agent.create(agentData, (err, result) => {
-        if (err) {
-            console.error('Error creating agent:', err);
-            res.status(500).send({ message: 'Error creating agent' });
-            return;
-        }
-        res.status(201).send({ message: 'Agent created', agentID: result.insertId }); // insertId is automatically given to us by db
-    });
+    try {
+        const result = await Agent.create(agentData);
+        res.status(201).send({ message: 'Agent created', agentID: result.insertId });
+    } catch (error) {
+        console.error('Error creating agent:', error);
+        res.status(500).send({ message: 'Error creating agent' });
+    }
 };
 
 const agentController = {

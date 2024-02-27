@@ -21,6 +21,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Agent'
+        '404':
+          description: No agents added yet.
+        '500':
+          description: Error fetching agents
     post:
       summary: Create a new agent
       operationId: createAgent
@@ -45,6 +49,8 @@ paths:
                   agentID:
                     type: integer
                     format: int64
+        '500':
+          description: Error creating agent
   /agents/{id}:
     get:
       summary: Get a single agent by ID
@@ -67,6 +73,8 @@ paths:
                 $ref: '#/components/schemas/Agent'
         '404':
           description: Agent not found
+        '500':
+          description: Error fetching agent by ID
 components:
   schemas:
     Agent:
