@@ -1,4 +1,4 @@
-const pool = require('../config/db');
+import pool from '../config/db.js';
 
 const Agent = {
     findAll: function(callback) {
@@ -16,4 +16,4 @@ const Agent = {
     }
 };
 
-module.exports = Agent;
+export default Agent;

@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+import mysql from 'mysql2';
 
 const pool = mysql.createPool({
     connectionLimit     : 5,
@@ -10,4 +10,4 @@ const pool = mysql.createPool({
     queueLimit : 0
 });
 
-module.exports = pool;
+export default pool;

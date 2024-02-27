@@ -1,14 +1,17 @@
-require('dotenv').config({
+import dotenv from 'dotenv';
+dotenv.config({
     path: '.env.local'
 });
 
-const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
-const morgan = require('morgan');
-const rateLimit = require('express-rate-limit');
-const swaggerUI = require('swagger-ui-express');
-const YAML = require('yamljs');
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import rateLimit from 'express-rate-limit';
+import swaggerUI from 'swagger-ui-express';
+import YAML from 'yamljs';
+import agentRoutes from './routes/agentRoutes.js';
+
 const swaggerDocument = YAML.load('./swagger.yaml');
 
 const app = express();
@@ -35,7 +38,6 @@ app.use(apiLimiter);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 /* Routes */
-const agentRoutes = require('./routes/agentRoutes');
 app.use('/api/agents', agentRoutes);
 
 

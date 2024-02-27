@@ -1,4 +1,4 @@
-const Agent = require('../models/Agent');
+import Agent from '../models/Agent.js';
 
 const getAgents = (req, res) => {
     Agent.findAll((err, agents) => {
@@ -39,4 +39,10 @@ const createAgent = (req, res) => {
     });
 };
 
-module.exports = { getAgents, getAgentById, createAgent };
+const agentController = {
+    getAgents,
+    getAgentById,
+    createAgent
+};
+
+export default agentController;
