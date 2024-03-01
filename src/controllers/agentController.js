@@ -41,10 +41,35 @@ const createAgent = async (req, res) => {
     }
 };
 
+const updateAgent = async (req, res) => {
+    const { id } = req.params;
+    const agentData = req.body;
+    try {
+        const result = await Agent.update(id, agentData);
+        res.status(200).send({ message: 'Agent successfully updated'})
+    } catch (error) {
+        console.error('Error updating agent', error);
+        res.status(500).send({ message: 'Error updating agent'});
+    }
+};
+
+const deleteAgent = async(req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await Agent.delete(id);
+        res.status(200).send({message: 'Agent successfully deleted'});
+    } catch (error) {
+        console.error('Error deleting agent', error);
+        res.status(500).send({ message: 'Error deleting agent'});
+    }
+}
+
 const agentController = {
     getAgents,
     getAgentById,
-    createAgent
+    createAgent,
+    deleteAgent,
+    updateAgent
 };
 
 export default agentController;
