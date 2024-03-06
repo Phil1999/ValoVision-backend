@@ -3,7 +3,7 @@ import Agent from '../models/Agent.js';
 const getAgents = async (req, res) => {
     try {
         const agents = await Agent.findAll();
-        if (!agents) {
+        if (agents.length == 0) {
             res.status(404).send({ message: 'No agents added.' });
         } else {
             res.status(200).json(agents);
