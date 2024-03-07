@@ -44,7 +44,7 @@ const Agent = {
            const [result] = await pool.query(
                 'DELETE FROM Agents WHERE agentID = ?', [id]);
            return result;
-        } catch(error) {
+        } catch (error) {
             throw error;
         }
     }

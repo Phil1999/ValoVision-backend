@@ -11,6 +11,11 @@ import rateLimit from 'express-rate-limit';
 import swaggerUI from 'swagger-ui-express';
 import YAML from 'yamljs';
 import agentRoutes from './routes/agentRoutes.js';
+import mapRoutes from './routes/mapRoutes.js';
+import commentRoutes from './routes/commentRoutes.js';
+import utilityRoutes from './routes/utilityRoutes.js';
+import strategyRoutes from './routes/strategyRoutes.js';
+import strategyController from './controllers/strategyController.js';
 
 const swaggerDocument = YAML.load('./swagger.yaml');
 
@@ -39,6 +44,10 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 /* Routes */
 app.use('/api/agents', agentRoutes);
+app.use('/api/maps', mapRoutes);
+app.use('/api/comments', commentRoutes);
+app.use('/api/utilities', utilityRoutes);
+app.use('/api/strategies', strategyRoutes);
 
 
 app.get('/', (req, res) => {
