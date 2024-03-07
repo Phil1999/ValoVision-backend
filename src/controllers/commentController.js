@@ -3,7 +3,7 @@ import Comment from '../models/Comment.js';
 const getComments = async (req, res) => {
     try {
         const comments = await Comment.findAll();
-        if (Comment.length == 0) {
+        if (comments.length == 0) {
             res.status(404).send({ message: 'No comments added.' });
         } else {
             res.status(200).json(comments);

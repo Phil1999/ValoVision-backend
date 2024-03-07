@@ -3,7 +3,7 @@ import Strategy from "../models/Strategy.js";
 const getStrategies = async (req, res) => {
     try {
         const strategies = await Strategy.findAll();
-        if (Strategy.length == 0) {
+        if (strategies.length == 0) {
             res.status(404).send({ message: 'No strategies added.' });
         } else {
             res.status(200).json(strategies);

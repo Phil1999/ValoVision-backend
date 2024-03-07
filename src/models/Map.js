@@ -12,8 +12,8 @@ const Map = {
     findById: async function(id) {
         try {
             const [result] = await pool.query(
-                'SELECT * FROM Maps WHERE mapID =?', [id]);
-                return result[0];
+            'SELECT * FROM Maps WHERE mapID =?', [id]);
+            return result[0];
         } catch (error) {
             throw error;
         }
@@ -21,8 +21,8 @@ const Map = {
     create: async function(mapData) {
         try {
             const [result] = await pool.query(
-                'INSERT INTO Maps (mapName, mapImageLink) VALUES           (?, ?)',
-                [mapData.mapName, mapData.mapImageLink]
+            'INSERT INTO Maps (mapName, mapImageLink) VALUES           (?, ?)',
+            [mapData.mapName, mapData.mapImageLink]
             );
             return result;
         } catch (error) {
@@ -32,8 +32,8 @@ const Map = {
     update: async function(id, mapData) {
         try {
             const [result] = await pool.query(
-                'UPDATE Maps SET mapName = ?, mapImageLink = ? WHERE      mapID = ?',
-                [mapData.mapName, mapData.mapImageLink, [id]]
+            'UPDATE Maps SET mapName = ?, mapImageLink = ? WHERE      mapID = ?',
+            [mapData.mapName, mapData.mapImageLink, [id]]
             );
             return result;
         } catch (error) {
@@ -44,7 +44,7 @@ const Map = {
         try {
             const [result] = await pool.query(
                 'DELETE FROM Maps WHERE mapID = ?', [id]);
-                return result;
+            return result;
         } catch (error) {
             throw error;
         }

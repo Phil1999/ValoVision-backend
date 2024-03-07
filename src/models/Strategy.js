@@ -3,7 +3,7 @@ import pool from '../config/db.js';
 const Strategy = {
     findAll: async function() {
         try {
-            const [result] = await pool.query('SELECT Strategies.* FROM Maps JOIN Strategies ON Strategies.mapID = Maps.mapID');
+            const [result] = await pool.query('SELECT Strategies.* FROM Maps INNER JOIN Strategies ON Strategies.mapID = Maps.mapID');
             return result;
         } catch (error) {
             throw error;
