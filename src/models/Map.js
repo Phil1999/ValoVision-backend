@@ -1,9 +1,9 @@
 import pool from '../config/db.js';
 
-const Agent = {
+const Map = {
     findAll: async function() {
         try {
-            const [result] = await pool.query('SELECT * FROM Agents');
+            const [result] = await pool.query('SELECT * FROM Maps');
             return result;
         } catch (error) {
             throw error;
@@ -11,28 +11,29 @@ const Agent = {
     },
     findById: async function(id) {
         try {
-            const [result] = await pool.query('SELECT * FROM Agents WHERE agentID = ?', [id]);
+            const [result] = await pool.query(
+            'SELECT * FROM Maps WHERE mapID =?', [id]);
             return result[0];
         } catch (error) {
             throw error;
         }
     },
-    create: async function(agentData) {
+    create: async function(mapData) {
         try {
             const [result] = await pool.query(
-                'INSERT INTO Agents (agentName, agentPortraitLink) VALUES (?, ?)',
-                [agentData.agentName, agentData.agentPortraitLink]
+            'INSERT INTO Maps (mapName, mapImageLink) VALUES           (?, ?)',
+            [mapData.mapName, mapData.mapImageLink]
             );
             return result;
         } catch (error) {
             throw error;
         }
     },
-    update: async function(id, agentData) {
+    update: async function(id, mapData) {
         try {
             const [result] = await pool.query(
-                'UPDATE Agents SET agentName = ?, agentPortraitLink = ? WHERE agentID = ?',
-                [agentData.agentName, agentData.agentPortraitLink, [id]]
+            'UPDATE Maps SET mapName = ?, mapImageLink = ? WHERE      mapID = ?',
+            [mapData.mapName, mapData.mapImageLink, [id]]
             );
             return result;
         } catch (error) {
@@ -41,9 +42,9 @@ const Agent = {
     },
     delete: async function(id) {
         try {
-           const [result] = await pool.query(
-                'DELETE FROM Agents WHERE agentID = ?', [id]);
-           return result;
+            const [result] = await pool.query(
+                'DELETE FROM Maps WHERE mapID = ?', [id]);
+            return result;
         } catch (error) {
             throw error;
         }
@@ -51,5 +52,4 @@ const Agent = {
 
 };
 
-export default Agent;
-
+export default Map;
