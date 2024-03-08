@@ -47,10 +47,10 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 /* Routes */
 app.use('/api/agents', agentRoutes);
-app.use('/api/maps/', mapRoutes);
-app.use('/api/comments/', commentRoutes);
-app.use('/api/utilities/', utilityRoutes);
-app.use('/api/strategies/', strategyRoutes);
+app.use('/api/maps', mapRoutes);
+app.use('/api/comments', commentRoutes);
+app.use('/api/utilities', utilityRoutes);
+app.use('/api/strategies', strategyRoutes);
 
 
 app.get('/', (req, res) => {
