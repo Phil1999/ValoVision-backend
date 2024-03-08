@@ -20,6 +20,9 @@ import strategyController from './controllers/strategyController.js';
 const swaggerDocument = YAML.load('./swagger.yaml');
 
 const app = express();
+// Enable 'trust proxy' setting
+app.set('trust proxy', true);
+
 const port = process.env.PORT || 8000;
 
 const corsOptions = {
@@ -32,7 +35,7 @@ const apiLimiter = rateLimit({
     max: 100,
 });
 
-app.set('trust proxy', true);
+
 /* Middlewares */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
