@@ -4,7 +4,7 @@ info:
   description: API documentation for ValoVision Backend
   version: "1.0"
 servers:
-  - url: http://localhost:8000/api
+  - url: https://valovision-backend-production.up.railway.app/api
 paths:
   /agents:
     get:
@@ -39,16 +39,6 @@ paths:
       responses:
         '201':
           description: Agent created successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                  agentID:
-                    type: integer
-                    format: int64
         '500':
           description: Error creating agent
   /agents/{id}:
@@ -75,6 +65,462 @@ paths:
           description: Agent not found
         '500':
           description: Error fetching agent by ID
+    put:
+      summary: Update an agent
+      operationId: updateAgent
+      tags:
+        - Agents
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Agent'
+      responses:
+        '200':
+          description: Agent successfully updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Error updating agent
+    delete:
+      summary: Delete an agent
+      operationId: deleteAgent
+      tags:
+        - Agents
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Agent successfully deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Error deleting agent
+  /utilities:
+    get:
+      summary: List all utilities
+      operationId: getUtilities
+      tags:
+        - Utilities
+      responses:
+        '200':
+          description: A list of utilities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Utility'
+        '404':
+          description: No utilities added yet.
+        '500':
+          description: Error fetching utilities
+    post:
+      summary: Create a new utility
+      operationId: createUtility
+      tags:
+        - Utilities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Utility'
+      responses:
+        '201':
+          description: Utility created successfully
+        '500':
+          description: Error creating utility
+  /utilities/{id}:
+    get:
+      summary: Get a single utility by ID
+      operationId: getUtilityById
+      tags:
+        - Utilities
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Utility found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Utility'
+        '404':
+          description: Utility not found
+        '500':
+          description: Error fetching utility by ID
+    put:
+      summary: Update a utility
+      operationId: updateUtility
+      tags:
+        - Utilities
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Utility'
+      responses:
+        '200':
+          description: Utility successfully updated
+        '500':
+          description: Error updating utility
+    delete:
+      summary: Delete a utility
+      operationId: deleteUtility
+      tags:
+        - Utilities
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Utility successfully deleted
+        '500':
+          description: Error deleting utility
+
+  /maps:
+    get:
+      summary: List all maps
+      operationId: getMaps
+      tags:
+        - Maps
+      responses:
+        '200':
+          description: A list of maps
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Map'
+        '404':
+          description: No maps added yet.
+        '500':
+          description: Error fetching maps
+    post:
+      summary: Create a new map
+      operationId: createMap
+      tags:
+        - Maps
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Map'
+      responses:
+        '201':
+          description: Map created successfully
+        '500':
+          description: Error creating map
+  /maps/{id}:
+    get:
+      summary: Get a single map by ID
+      operationId: getMapById
+      tags:
+        - Maps
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Map found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Map'
+        '404':
+          description: Map not found
+        '500':
+          description: Error fetching map by ID
+
+    put:
+      summary: Update a map
+      operationId: updateMap
+      tags:
+        - Maps
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Map'
+      responses:
+        '200':
+          description: Map successfully updated
+        '500':
+          description: Error updating map
+    delete:
+      summary: Delete a map
+      operationId: deleteMap
+      tags:
+        - Maps
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Map successfully deleted
+        '500':
+          description: Error deleting map
+
+  /strategies:
+    get:
+      summary: List all strategies
+      operationId: getStrategies
+      tags:
+        - Strategies
+      responses:
+        '200':
+          description: A list of strategies
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Strategy'
+        '404':
+          description: No strategies added yet.
+        '500':
+          description: Error fetching strategies
+    post:
+      summary: Create a new strategy
+      operationId: createStrategy
+      tags:
+        - Strategies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Strategy'
+      responses:
+        '201':
+          description: Strategy created successfully
+        '500':
+          description: Error creating strategy
+  /strategies/{id}:
+    get:
+      summary: Get a single strategy by ID
+      operationId: getStrategyById
+      tags:
+        - Strategies
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Strategy found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Strategy'
+        '404':
+          description: Strategy not found
+        '500':
+          description: Error fetching strategy by ID
+
+    put:
+      summary: Update a strategy
+      operationId: updateStrategy
+      tags:
+        - Strategies
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Strategy'
+      responses:
+        '200':
+          description: Strategy successfully updated
+        '500':
+          description: Error updating strategy
+    delete:
+      summary: Delete a strategy
+      operationId: deleteStrategy
+      tags:
+        - Strategies
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Strategy successfully deleted
+        '500':
+          description: Error deleting strategy
+
+  /comments:
+    get:
+      summary: List all comments
+      operationId: getComments
+      tags:
+        - Comments
+      responses:
+        '200':
+          description: A list of comments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+        '404':
+          description: No comments added yet.
+        '500':
+          description: Error fetching comments
+    post:
+      summary: Create a new comment
+      operationId: createComment
+      tags:
+        - Comments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comment'
+      responses:
+        '201':
+          description: Comment created successfully
+        '500':
+          description: Error creating comment
+  /comments/{id}:
+    get:
+      summary: Get a single comment by ID
+      operationId: getCommentById
+      tags:
+        - Comments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Comment found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+        '404':
+          description: Comment not found
+        '500':
+          description: Error fetching comment by ID
+    put:
+      summary: Update a comment
+      operationId: updateComment
+      tags:
+        - Comments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comment'
+      responses:
+        '200':
+          description: Comment successfully updated
+        '500':
+          description: Error updating comment
+    delete:
+      summary: Delete a comment
+      operationId: deleteComment
+      tags:
+        - Comments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Comment successfully deleted
+        '500':
+          description: Error deleting comment
+
 components:
   schemas:
     Agent:
@@ -88,3 +534,61 @@ components:
         agentPortraitLink:
           type: string
           format: uri
+      Utility:
+      type: object
+      properties:
+        utilityID:
+          type: integer
+          format: int64
+        utilityName:
+          type: string
+        utilityIconLink:
+          type: string
+          format: uri
+    Map:
+      type: object
+      properties:
+        mapID:
+          type: integer
+          format: int64
+        mapName:
+          type: string
+        mapImageLink:
+          type: string
+          format: uri
+    Strategy:
+      type: object
+      properties:
+        strategyID:
+          type: integer
+          format: int64
+        strategyTitle:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        strategyDescription:
+          type: string
+        strategyImageLink:
+          type: string
+          format: uri
+        mapID:
+          type: integer
+          format: int64
+    Comment:
+      type: object
+      properties:
+        commentID:
+          type: integer
+          format: int64
+        commentText:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
