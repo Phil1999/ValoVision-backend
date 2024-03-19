@@ -13,10 +13,22 @@ npm start
 - **Connection Pooling:** Improves database efficiency and scalability. By utilizing a pool of reusable connections, the API reduces the overhead associated with establishing a new database connections for each request. This allows us to handle a higher volume of concurrent database requests and minimize latency in database queries. 
 
 
-# Viewing Documentation
-You are able to view api documentation at [api-docs](http://localhost:8000/api-docs)
+## Viewing Documentation
+You are able to view api documentation at [api-docs](https://valovision-backend-production.up.railway.app/api-docs)
 
 
 
-# Project Details
-This project utilizes the Model-Route-Controller design pattern for creating APIs. We are hosting the backend on Railway. 
+## Project Details
+This project utilizes the Model-Route-Controller design pattern for creating APIs. We are hosting the backend on Railway.
+
+
+## Citations:
+The code is our original work and we only used references from official documentation to write the code.
+
+Documentation references used:
+
+[Express/Node](https://expressjs.com/)
+
+[Swagger](https://swagger.io/docs/)
+
+[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
