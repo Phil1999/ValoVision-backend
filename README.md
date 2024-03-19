@@ -14,7 +14,7 @@ npm start
 
 
 ## Viewing Documentation
-You are able to view api documentation at [api-docs](https://valovision-backend-production.up.railway.app/api-docs)
+You are able to view api documentation at [api-docs](http://localhost:8000/api-docs)
 
 
 
