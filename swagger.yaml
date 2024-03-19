@@ -133,7 +133,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Utility'
+                  $ref: '#/components/schemas/Utilities'
         '404':
           description: No utilities added yet.
         '500':
@@ -148,7 +148,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Utility'
+              $ref: '#/components/schemas/Utilities'
       responses:
         '201':
           description: Utility created successfully
@@ -173,7 +173,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Utility'
+                $ref: '#/components/schemas/Utilities'
         '404':
           description: Utility not found
         '500':
@@ -195,7 +195,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Utility'
+              $ref: '#/components/schemas/Utilities'
       responses:
         '200':
           description: Utility successfully updated
@@ -534,7 +534,7 @@ components:
         agentPortraitLink:
           type: string
           format: uri
-      Utility:
+    Utilities:
       type: object
       properties:
         utilityID:
